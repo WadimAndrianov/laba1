@@ -48,6 +48,8 @@ public class Complex {
     
     private double re;   // the real part
 
+    private double im;   // the imaginary part
+
     public double getRe() {
         return re;
     }
@@ -64,7 +66,7 @@ public class Complex {
         this.im = im;
     }
 
-    private double im;   // the imaginary part
+
 
     /** 
      * create a new object with the given real and imaginary parts
@@ -88,6 +90,15 @@ public class Complex {
         return this;
     }
 
+    public Complex divide(Complex other) {
+        double denominator = other.getRe() * other.getRe() + other.getIm() * other.getIm();
+        double newRe = (this.getRe() * other.getRe() + this.getIm() * other.getIm()) / denominator;
+        double newIm = (this.getIm() * other.getRe() - this.getRe() * other.getIm()) / denominator;
+        return new Complex(newRe, newIm);
+    }
+    public Complex minus(Complex other) {
+        return new Complex(this.re - other.re, this.im - other.im);
+    }
     /**
      * Multiply operation.
      * @param  b multiplier
